@@ -10,15 +10,17 @@
 <body>
     <?php require 'includes/header.php'?>
     <section>
-        <h4>Hello <?php echo $user->getName()?>,</h4>
+        <h4>Hello <?php echo $customer->getName()?>,</h4>
         <p>Put your content here.</p>
     </section>
 
-    <form action="/action_page.php">
+    <form action="/action_page.php" method="post">
         <label for="customers">Choose a customer:</label>
-<?php for($i=0;count($userDropdown->load())>=$i;$i++): ?>
-        <select id="customers" name="cars">
-            <option value="<?php $userDropdown->load()[$i]; ?>"><?php echo ($userDropdown->load()[$i]);?></option>
+
+<?php $controller = new HomepageController;
+for($i=0;$i < count($controller->userArray);$i++): ?>
+        <select id="customers" name="customers">
+            <option value="<?php echo $controller->userArray[$i]->getName(); ?>"><?php echo $controller->userArray[$i]->getId();?></option>
 
 <?php endfor; ?>
 

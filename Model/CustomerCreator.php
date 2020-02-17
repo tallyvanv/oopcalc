@@ -7,7 +7,7 @@ class CustomerCreator
     {
         $data = [];
         //JSOn file open and decode
-        $data = json_decode(file_get_contents('/data/customers.json'));
+        $data = json_decode(file_get_contents('data/customers.json'), true);
 
 
         //LOOP OVER to get customer objects
