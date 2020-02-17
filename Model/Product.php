@@ -42,4 +42,15 @@ class Product
             return $productPrice;
         }
     }
+
+    //LOOP OVER to get product objects
+    public function load()
+    {
+
+        foreach ($json AS $data) {
+            //if data = + filter methods
+            //convert to array of objects
+            $list[] = new Product($data['name']);
+        }
+    }
 }
