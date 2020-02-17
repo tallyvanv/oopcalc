@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-class UserCreator
+class CustomerCreator
 {
     public function fetchUserData() : array
     {
