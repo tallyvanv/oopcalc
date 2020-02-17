@@ -43,8 +43,9 @@ class Product
         }
     }
 
+
     //LOOP OVER to get product objects
-    public function load()
+/*    public function load()
     {
 
         foreach ($json AS $data) {
@@ -52,5 +53,5 @@ class Product
             //convert to array of objects
             $list[] = new Product($data['name']);
         }
-    }
+    }*/
 }
