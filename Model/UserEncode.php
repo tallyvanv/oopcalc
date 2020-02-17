@@ -1,17 +1,21 @@
 <?php
 declare(strict_types=1);
 
-class UserEncode
+class UserCreator
 {
-    public function load() : array
+    public function fetchUserData() : array
     {
-        $json = json_decode(file_get_contents('/data/customers.json'));
+        $data = [];
+        //JSOn file open and decode
+        $data = json_decode(file_get_contents('/data/customers.json'));
 
-        $list = [];
-        foreach ($json AS $data) {
-            //if data = + filter methods
-            $list[] = new User($data['name']);
-        }
-        return $list;
+
+        //LOOP OVER to get customer objects
+        /*        foreach ($json AS $data) {
+                    //if data = + filter methods
+                    //convert to array of objects
+                    $list[] = new Product($data['name']);
+                }*/
+        return $data;
     }
 }

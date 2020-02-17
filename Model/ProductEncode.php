@@ -1,21 +1,23 @@
 <?php
 declare(strict_types=1);
 
-class ProductEncode
+class ProductCreator
 {
 
-    public function load() : array
+    public function fetchProductData() : array
     {
-        $json = json_decode(file_get_contents('/data/products.json'));
+        $data = [];
+        //JSOn file open and decode
+        $data = json_decode(file_get_contents('/data/products.json'));
 
-        $list = [];
-        foreach ($json AS $data) {
+
+        //LOOP OVER to get customer objects
+/*        foreach ($json AS $data) {
             //if data = + filter methods
+            //convert to array of objects
             $list[] = new Product($data['name']);
-        }
-        return $list;
+        }*/
+        return $data;
     }
 }
 
-//JSOn file open and decode -> LOOP OVER en dan customer objects
-//converteer naar array van objecten
