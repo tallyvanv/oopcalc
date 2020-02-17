@@ -4,8 +4,6 @@ ini_set('display_errors', "1");
 ini_set('display_startup_errors', "1");
 error_reporting(E_ALL & ~E_NOTICE);
 
-//include all your model files here
-require 'Model/User.php';
 //include all your controllers here
 require 'Controller/HomepageController.php';
 
