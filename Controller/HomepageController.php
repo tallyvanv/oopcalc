@@ -21,3 +21,5 @@ class HomepageController
         require 'View/homepage.php';
     }
 }
+$userDropdown = new UserEncode();
+$productDropdown = new ProductEncode();
