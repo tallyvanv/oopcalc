@@ -23,6 +23,18 @@ class HomepageController
 
         var_dump($userArray);
 
+        $product = new ProductCreator();
+        $products = $product->fetchProductData();
+
+        $productArray = [];
+
+        for ($i = 0; $i < count($products); $i++) {
+            $productArray[$i] = new Product($products[$i]['name'], $products[$i]['id'], $products[$i]['price'], $products[$i]['description']);
+        }
+
+        var_dump($productArray);
+
+
         //you should not echo anything inside your controller - only assign vars here
         // then the view will actually display them.
 

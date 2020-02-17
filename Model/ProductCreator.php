@@ -8,7 +8,7 @@ class ProductCreator
     {
         $data = [];
         //JSOn file open and decode
-        $data = json_decode(file_get_contents('/data/products.json'));
+        $data = json_decode(file_get_contents('data/products.json'), true);
 
         return $data;
     }
