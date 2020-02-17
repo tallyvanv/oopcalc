@@ -18,6 +18,14 @@ error_reporting(E_ALL & ~E_NOTICE);
         <h4>Hello <?php echo $user->getName()?>,</h4>
         <p>Put your content here.</p>
     </section>
+
+
+
+
+
+
+
+
     <?php require 'includes/footer.php'?>
 </body>
 </html>
