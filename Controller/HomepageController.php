@@ -21,7 +21,7 @@ class HomepageController
             $userArray[$i] = new Customer($customers[$i]['name'], $customers[$i]['id'], $customers[$i]['group_id']);
         }
 
-        var_dump($userArray);
+        //var_dump($userArray);
 
         $product = new ProductCreator();
         $products = $product->fetchProductData();
@@ -32,7 +32,7 @@ class HomepageController
             $productArray[$i] = new Product($products[$i]['name'], $products[$i]['id'], $products[$i]['price'], $products[$i]['description']);
         }
 
-        var_dump($productArray);
+        //var_dump($productArray);
 
 
         //you should not echo anything inside your controller - only assign vars here
@@ -42,5 +42,5 @@ class HomepageController
         require 'View/homepage.php';
     }
 }
-$userDropdown = new UserEncode();
-$productDropdown = new ProductEncode();
+//$userDropdown = new UserEncode();
+//$productDropdown = new ProductEncode();

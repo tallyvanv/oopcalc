@@ -28,6 +28,11 @@ class Product
     {
         return $this->productName;
     }
+    public function getId() : int
+    {
+        return $this->productId;
+    }
+
 // this function is used to check if the total fixed discount surpasses the price
 // if so it should set the product price to €0,00 or 0
 //

@@ -10,24 +10,37 @@
 <body>
     <?php require 'includes/header.php'?>
     <section>
-        <h4>Hello <?php echo $customer->getName()?>,</h4>
+        <h4>Hello <?php // echo $customer->getName()?>,</h4>
         <p>Put your content here.</p>
     </section>
 
     <form action="/action_page.php" method="post">
         <label for="customers">Choose a customer:</label>
-
-<?php $controller = new HomepageController;
-for($i=0;$i < count($controller->userArray);$i++): ?>
         <select id="customers" name="customers">
-            <option value="<?php echo $controller->userArray[$i]->getName(); ?>"><?php echo $controller->userArray[$i]->getId();?></option>
+<?php
+foreach($userArray as $user){ ?>
 
-<?php endfor; ?>
+            <option value="<?php echo $user->getId();?>"><?php echo $user->getName();?></option>
 
 
-            <option value="saab">Saab 95</option>
-            <option value="mercedes">Mercedes SLK</option>
-            <option value="audi">Audi TT</option>
+<?php } ?>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+    <form action="/action_page.php" method="post">
+            <label for="products">Choose a duck:</label>
+            <select id="products" name="products">
+            <?php
+            foreach($productArray as $product){ ?>
+
+                <option value="<?php echo $product->getId();?>"><?php echo $product->getName();?></option>
+
+
+            <?php } ?>
+            </select>
+        <input type="submit" value="Submit">
+    </form>
+
         </select>
         <input type="submit" value="Submit">
     </form>
