@@ -2,17 +2,41 @@
 declare(strict_types=1);
 
 require 'Model/Customer.php';
-require 'Model/CustomerCreator.php';
+
 require 'Model/Product.php';
-require 'Model/ProductCreator.php';
+
 require 'Model/CustomerGroup.php';
-require 'Model/CustomerGroupCreator.php';
+
+require 'Model/Dataloader.php';
 
 class HomepageController
 {
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(/*array $GET, array $POST*/)
     {
+        $userArray = [];
+
+
+        $loader = new Dataloader();
+        $customerData = $loader->fetchUserData('data/customers.json');
+        $groupData = $loader->fetchUserData('data/groups.json');
+        $productData = $loader->fetchUserData('data/products.json');
+
+        foreach ($customerData as $user) {
+            array_push($userArray, new Customer($user['name'], $user['id'], $user['group_id']));
+        }
+
+
+
+
+
+
+        $productArray = [];
+
+        foreach ($productData as $item) {
+            array_push($productArray, new Product($item['name'], $item['id'], $item['price'], $item['description']));
+        }
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!isset($_POST["customers"]) || !isset($_POST["products"])) {
                 $_POST["customers"] = $_POST["customers"][0];
@@ -39,8 +63,6 @@ class HomepageController
                     array_push($productArray, new Product($item['name'], $item['id'], $item['price'], $item['description']));
                 }
 
-                $group = new CustomerGroupCreator();
-                $groups = $group->fetchUserData();
 
                 $groupArray = [];
                 // groupId in this case refers to the group ID, which we know from user input (group id is linked).
@@ -56,8 +78,14 @@ class HomepageController
                 $groupID = $customerPost->getGroupId();
                 // Using the findGroup function which returns a single group, which the user belongs to
                 // we find other groups, which are linked together.
+
                 while ($groupID !== null) {
                     $groupsChain = findGroup($groupID, $groups);
+                }
+
+                while ($groupID !== null)
+                {
+                    $groupsChain = findGroup($groupID, $groupData);
 
                     array_push($groupArray, $groupsChain);
                     if (isset($groupsChain['group_id'])) {
