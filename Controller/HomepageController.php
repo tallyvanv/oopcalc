@@ -66,6 +66,10 @@ class HomepageController
                     }
                 }
                 var_dump($groupArray);
+                $arrayFixedDiscount = $userArray["$customerPost"]->discountSorter($groupArray, 'fixed_discount');
+                var_dump($arrayFixedDiscount);
+                $arrayVariableDiscount = $userArray["$customerPost"]->discountSorter($groupArray, 'variable_discount');
+                var_dump($arrayVariableDiscount);
             }
 
         }
@@ -95,7 +99,6 @@ class HomepageController
         else {
             $_POST['customer'] =
         }*/
-       $arrayFixedDiscount = [];
-     $arrayFixedDiscount = $player->discountSorter($groupArray, 'fixed_discount');
+
     }
 }
