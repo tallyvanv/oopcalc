@@ -16,7 +16,6 @@ class HomepageController
     {
         $userArray = [];
 
-
         $loader = new Dataloader();
         $customerData = $loader->fetchUserData('data/customers.json');
         $groupData = $loader->fetchUserData('data/groups.json');
@@ -25,11 +24,6 @@ class HomepageController
         foreach ($customerData as $user) {
             array_push($userArray, new Customer($user['name'], $user['id'], $user['group_id']));
         }
-
-
-
-
-
 
         $productArray = [];
 
