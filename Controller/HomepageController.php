@@ -16,7 +16,7 @@ class HomepageController
         //this is just example code, you can remove the line below
         $customer = new CustomerCreator();
         $customers = $customer->fetchUserData();
-
+      //  $player = new Customer($player->getName(), $customer->getId(), $customer->getGroupId);
         $userArray = [];
 
         foreach ($customers as $user) {
@@ -71,7 +71,7 @@ class HomepageController
         else {
             $_POST['customer'] =
         }*/
-
-
+       $arrayFixedDiscount = [];
+     $arrayFixedDiscount = $player->discountSorter($groupArray, 'fixed_discount');
     }
 }

@@ -27,6 +27,9 @@ class Customer
         return $this->group_id;
     }
 
-
+    public function discountSorter($arrayName,$discount)
+    {
+        return array_column($arrayName, $discount);
+    }
 
 }
