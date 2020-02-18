@@ -36,13 +36,8 @@ class HomepageController
         $group = new CustomerGroupCreator();
         $groups = $group->fetchUserData();
 
-        $groupArray = [];
 
-        foreach ($groups as $idCheck) {
-            if ($idCheck['group_id'] === $userArray['$i']['group_id']) {
-                array_push($groupArray, $idCheck);
-            }
-        }
+
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!isset($_POST["customers"]) || !isset($_POST["products"])) {
@@ -60,12 +55,42 @@ class HomepageController
 
                 $groupArray = [];
 
-                foreach ($groups as $idCheck) {
-                    if ($idCheck['group_id'] == $userArray["$customerPost"]->getGroupId()) {
-                        array_push($groupArray, $idCheck);
+                $groupID = $userArray["$customerPost"]->getGroupId();
+                $groupArray = [];
+
+                // groupId in this case refers to the group ID, which we know from user input (group id is linked).
+                // groupsArray refers to the associative array which we converted from groups.json (we named it $groupData some previous lines)
+                function findGroup ($groupId, $groupsArray)
+                {
+                    foreach ($groupsArray as $group) {
+                        if ($group['id'] == $groupId) {
+                            return $group;
+                        }
+                    }
+                }
+
+
+
+                // Using the findGroup function which returns a single group, which the user belongs to
+                // we find other groups, which are linked together.
+                while ($groupID !== null)
+                {
+                    $groupsChain = findGroup($groupID, $groups);
+
+                    array_push($groupArray,$groupsChain);
+                    if (isset($groupsChain['group_id']))
+                    {
+                        // If the current group over which we are looping has a group ID
+                        // we override the groupID variable with the new groupID of the former group.
+                        $groupID = $groupsChain['group_id'];
+                    }
+                    else
+                    {
+                        $groupID = null;
                     }
                 }
                 var_dump($groupArray);
+               
                 $arrayFixedDiscount = $userArray["$customerPost"]->discountSorter($groupArray, 'fixed_discount');
                 var_dump($arrayFixedDiscount);
                 $arrayVariableDiscount = $userArray["$customerPost"]->discountSorter($groupArray, 'variable_discount');
@@ -75,7 +100,43 @@ class HomepageController
                 var_dump($totalDiscount);
             }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //you should not echo anything inside your controller - only assign vars here
         // then the view will actually display them.
