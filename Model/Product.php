@@ -33,24 +33,48 @@ class Product
         return $this->productId;
     }
 
+    public function getPrice() : float
+    {
+        return $this->productPrice;
+    }
+
 // this function is used to check if the total fixed discount surpasses the price
 // if so it should set the product price to €0,00 or 0
 //
-    public function totalDiscount($arrayName) : int
+    public function totalDiscount($arrayName) : float
     {
-        return array_sum($arrayName);
+        $productTotalFixedDiscount = array_sum($arrayName);
+        return $productTotalFixedDiscount;
     }
-    public function discountChecker($productTotalFixedDiscount, $productPrice) : int
+    public function discountChecker($productTotalFixedDiscount, $productPrice) : float
     {
         if ($productTotalFixedDiscount>$productPrice){
            return $productPrice = 0;
         }
+        else {
+            return $this->totalFixed($productTotalFixedDiscount, $productPrice);
+        }
     }
 
-    public function totalFixed($productTotalFixedDiscount, $productPrice): int
+    public function totalFixed($productTotalFixedDiscount, $productPrice): float
     {
         $productPrice = $productPrice - $productTotalFixedDiscount;
         return $productPrice;
-}
+    }
+
+    public function highestVariableDiscount($variableArrayName)
+    {
+        return max($variableArrayName);
+    }
+
+    public function variableDiscountFixedAmount($percentageAmount, $totalPrice)
+    {
+        return $totalPrice * ($percentageAmount / 100);
+    }
+
+    public function variableDiscountCalculator($percentageAmount, $totalPrice)
+    {
+        return $totalPrice - $percentageAmount;
+    }
 
 }

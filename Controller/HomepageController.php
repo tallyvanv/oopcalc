@@ -48,7 +48,7 @@ class HomepageController
                 $customerPost = $_POST["customers"];
                 $productPost = $_POST["products"];
 
-                var_dump($userArray["$customerPost"]->getGroupId());
+                //var_dump($userArray["$customerPost"]->getGroupId());
 
                 $group = new CustomerGroupCreator();
                 $groups = $group->fetchUserData();
@@ -89,15 +89,39 @@ class HomepageController
                         $groupID = null;
                     }
                 }
-                var_dump($groupArray);
-               
-                $arrayFixedDiscount = $userArray["$customerPost"]->discountSorter($groupArray, 'fixed_discount');
-                var_dump($arrayFixedDiscount);
-                $arrayVariableDiscount = $userArray["$customerPost"]->discountSorter($groupArray, 'variable_discount');
-                var_dump($arrayVariableDiscount);
 
+                var_dump($groupArray);
+
+                //var_dump($groupArray);
+
+                $arrayFixedDiscount = $userArray["$customerPost"]->discountSorter($groupArray, 'fixed_discount');
+                //var_dump($arrayFixedDiscount);
+                $arrayVariableDiscount = $userArray["$customerPost"]->discountSorter($groupArray, 'variable_discount');
+                //var_dump($arrayVariableDiscount);
+
+                var_dump($productArray["$productPost"]->getPrice());
                 $totalDiscount = $productArray["$productPost"]->totalDiscount($arrayFixedDiscount);
                 var_dump($totalDiscount);
+                $totalPrice = $productArray["$productPost"]->discountChecker($totalDiscount, $productArray["$productPost"]->getPrice());
+                var_dump($totalPrice);
+
+                $highestVariableDiscount = 0;
+                if (is_array($productArray))
+                {
+                    $highestVariableDiscount = $productArray["$productPost"]->highestVariableDiscount($arrayVariableDiscount);
+                }
+
+                var_dump($highestVariableDiscount);
+
+                $totalVariableDiscount = $productArray["$productPost"]->variableDiscountFixedAmount($highestVariableDiscount, $totalPrice);
+                var_dump($totalVariableDiscount);
+
+                $newPrice = $productArray["$productPost"]->variableDiscountCalculator($totalVariableDiscount, $totalPrice);
+                var_dump($newPrice);
+
+
+
+
             }
 
 
