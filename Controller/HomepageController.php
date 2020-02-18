@@ -106,8 +106,11 @@ class HomepageController
                 var_dump($totalPrice);
 
                 $highestVariableDiscount = 0;
-                if (is_array($productArray))
+                if (empty($arrayVariableDiscount))
                 {
+                    $highestVariableDiscount = 0;
+                }
+                else {
                     $highestVariableDiscount = $productArray["$productPost"]->highestVariableDiscount($arrayVariableDiscount);
                 }
 
