@@ -39,14 +39,14 @@ class Product
     public function discountChecker($productTotalFixedDiscount, $productPrice) : int
     {
         if ($productTotalFixedDiscount>$productPrice){
-            $productPrice = 0;
-            return $productPrice;
-        }
-        else {
-            $productPrice = $productPrice - $productTotalFixedDiscount;
-            return $productPrice;
+           return $productPrice = 0;
         }
     }
 
+    public function totalFixed($productTotalFixedDiscount, $productPrice): int
+    {
+        $productPrice = $productPrice - $productTotalFixedDiscount;
+        return $productPrice;
+}
 
 }
