@@ -2,42 +2,40 @@
 declare(strict_types = 1);
 
 require 'Model/Customer.php';
-require 'Model/CustomerCreator.php';
+
 require 'Model/Product.php';
-require 'Model/ProductCreator.php';
+
 require 'Model/CustomerGroup.php';
-require 'Model/CustomerGroupCreator.php';
+
+require 'Model/Dataloader.php';
 
 class HomepageController
 {
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(/*array $GET, array $POST*/)
     {
-        //this is just example code, you can remove the line below
-        $customer = new CustomerCreator();
-        $customers = $customer->fetchUserData();
-      //  $player = new Customer($player->getName(), $customer->getId(), $customer->getGroupId);
         $userArray = [];
 
-        foreach ($customers as $user) {
+
+        $loader = new Dataloader();
+        $customerData = $loader->fetchUserData('data/customers.json');
+        $groupData = $loader->fetchUserData('data/groups.json');
+        $productData = $loader->fetchUserData('data/products.json');
+
+        foreach ($customerData as $user) {
             array_push($userArray, new Customer($user['name'], $user['id'], $user['group_id']));
         }
 
 
-        $product = new ProductCreator();
-        $products = $product->fetchProductData();
+
+
+
 
         $productArray = [];
 
-        foreach ($products as $item) {
+        foreach ($productData as $item) {
             array_push($productArray, new Product($item['name'], $item['id'], $item['price'], $item['description']));
         }
-
-        $group = new CustomerGroupCreator();
-        $groups = $group->fetchUserData();
-
-
-
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!isset($_POST["customers"]) || !isset($_POST["products"])) {
@@ -50,8 +48,6 @@ class HomepageController
 
                 //var_dump($userArray["$customerPost"]->getGroupId());
 
-                $group = new CustomerGroupCreator();
-                $groups = $group->fetchUserData();
 
                 $groupArray = [];
 
@@ -75,7 +71,7 @@ class HomepageController
                 // we find other groups, which are linked together.
                 while ($groupID !== null)
                 {
-                    $groupsChain = findGroup($groupID, $groups);
+                    $groupsChain = findGroup($groupID, $groupData);
 
                     array_push($groupArray,$groupsChain);
                     if (isset($groupsChain['group_id']))
