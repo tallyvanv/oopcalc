@@ -14,20 +14,19 @@ class HomepageController
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(/*array $GET, array $POST*/)
     {
-
-
-
+        $userArray = [];
+        $productArray = [];
+        $groupArray = [];
 
         $loader = new Dataloader();
 
         $customerData = $loader->fetchUserData('data/customers.json');
         $groupData = $loader->fetchUserData('data/groups.json');
         $productData = $loader->fetchUserData('data/products.json');
-        $userArray = [];
+
         foreach ($customerData as $user) {
             array_push($userArray, new Customer($user['name'], $user['id'], $user['group_id']));
         }
-        $productArray = [];
         foreach ($productData as $item) {
             array_push($productArray, new Product($item['name'], $item['id'], $item['price'], $item['description']));
         }
@@ -47,7 +46,6 @@ class HomepageController
 
                 // groupId in this case refers to the group ID, which we know from user input (group id is linked).
                 // groupsArray refers to the associative array which we converted from groups.json (we named it $groupData some previous lines)
-                $groupArray = [];
                 function findGroup ($groupId, $groupsArray)
                 {
                     foreach ($groupsArray as $group) {
@@ -167,12 +165,12 @@ class HomepageController
         }
         whatIsHappening();
 
-       /* if (!isset($_POST['customer'])){
-            return;
-        }
-        else {
-            $_POST['customer'] =
-        }*/
+        /* if (!isset($_POST['customer'])){
+             return;
+         }
+         else {
+             $_POST['customer'] =
+         }*/
 
     }
 }
