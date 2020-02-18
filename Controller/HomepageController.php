@@ -19,19 +19,19 @@ class HomepageController
 
         $userArray = [];
 
-        for ($i = 0; $i < count($customers); $i++) {
-            $userArray[$i] = new Customer($customers[$i]['name'], $customers[$i]['id'], $customers[$i]['group_id']);
+        foreach ($customers as $user) {
+            array_push($userArray, new Customer($user['name'], $user['id'], $user['group_id']));
         }
 
-        //var_dump($userArray);
+        var_dump($userArray);
 
         $product = new ProductCreator();
         $products = $product->fetchProductData();
 
         $productArray = [];
 
-        for ($i = 0; $i < count($products); $i++) {
-            $productArray[$i] = new Product($products[$i]['name'], $products[$i]['id'], $products[$i]['price'], $products[$i]['description']);
+        foreach ($products as $item) {
+            array_push($productArray, new Product($item['name'], $item['id'], $item['price'], $item['description']));
         }
 
         $group = new CustomerGroupCreator();
@@ -40,12 +40,13 @@ class HomepageController
         $groupArray = [];
 
         foreach ($groups as $idCheck) {
-            if ($idCheck['group_id'] == $userArray['$i']['group_id']) {
+            if ($idCheck['group_id'] === $userArray['$i']['group_id']) {
                 array_push($groupArray, $idCheck);
             }
         }
-         var_dump($groupArray);
-        //var_dump($productArray);
+
+        var_dump($groupArray);
+        var_dump($productArray);
 
 
         //you should not echo anything inside your controller - only assign vars here
