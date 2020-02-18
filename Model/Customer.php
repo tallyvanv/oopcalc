@@ -22,4 +22,8 @@ class Customer
     public function getId() : int {
         return $this->id;
     }
+
+    public function getGroupId(): int {
+        return $this->group_id;
+    }
 }

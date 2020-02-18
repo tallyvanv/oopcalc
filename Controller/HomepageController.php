@@ -5,6 +5,8 @@ require 'Model/Customer.php';
 require 'Model/CustomerCreator.php';
 require 'Model/Product.php';
 require 'Model/ProductCreator.php';
+require 'Model/CustomerGroup.php';
+require 'Model/CustomerGroupCreator.php';
 
 class HomepageController
 {
@@ -32,6 +34,17 @@ class HomepageController
             $productArray[$i] = new Product($products[$i]['name'], $products[$i]['id'], $products[$i]['price'], $products[$i]['description']);
         }
 
+        $group = new CustomerGroupCreator();
+        $groups = $group->fetchUserData();
+
+        $groupArray = [];
+
+        foreach ($groups as $idCheck) {
+            if ($idCheck['group_id'] == $userArray['$i']['group_id']) {
+                array_push($groupArray, $idCheck);
+            }
+        }
+         var_dump($groupArray);
         //var_dump($productArray);
 
 
