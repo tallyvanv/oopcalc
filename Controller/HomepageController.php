@@ -70,6 +70,9 @@ class HomepageController
                 var_dump($arrayFixedDiscount);
                 $arrayVariableDiscount = $userArray["$customerPost"]->discountSorter($groupArray, 'variable_discount');
                 var_dump($arrayVariableDiscount);
+
+                $totalDiscount = $productArray["$productPost"]->totalDiscount($arrayFixedDiscount);
+                var_dump($totalDiscount);
             }
 
         }
