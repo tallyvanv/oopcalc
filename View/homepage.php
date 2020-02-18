@@ -11,41 +11,39 @@
     <?php require 'includes/header.php'?>
     <section>
         <h4>Hello <?php // echo $customer->getName()?>,</h4>
-        <p>Put your content here.</p>
-    </section>
+        <form  method="post">
+            <label for="customers">Choose a customer:</label>
+            <select id="customers" name="customers">
+                <?php
+                foreach($userArray as $user){ ?>
 
-    <form action="/action_page.php" method="post">
-        <label for="customers">Choose a customer:</label>
-        <select id="customers" name="customers">
-<?php
-foreach($userArray as $user){ ?>
-
-            <option value="<?php echo $user->getId();?>"><?php echo $user->getName();?></option>
+                    <option value="<?php echo $user->getId();?>"><?php echo $user->getName();?></option>
 
 
-<?php } ?>
-        </select>
-        <input type="submit" value="Submit">
-    </form>
-    <form action="/action_page.php" method="post">
-            <label for="products">Choose a duck:</label>
-            <select id="products" name="products">
-            <?php
-            foreach($productArray as $product){ ?>
-
-                <option value="<?php echo $product->getId();?>"><?php echo $product->getName();?></option>
-
-
-            <?php } ?>
+                <?php } ?>
             </select>
-        <input type="submit" value="Submit">
-    </form>
+            <input type="submit" value="Submit">
+        </form>
+        <form method="post">
+            <label for="products">Choose a product:</label>
+            <select id="products" name="products">
+                <?php
+                foreach($productArray as $product){ ?>
 
-        </select>
-        <input type="submit" value="Submit">
-    </form>
+                    <option value="<?php echo $product->getId();?>"><?php echo $product->getName();?></option>
 
-    <p>Choose a car, and click the "Submit" button to send input to the server.</p>
+
+                <?php } ?>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+
+    </section>
+<!-- action="/action_page.php": this brings you to another page if you post -->
+
+
+
+    <p>Choose your name and product, and click the "Submit" button to get your price.</p>
 
 
 

@@ -26,4 +26,7 @@ class Customer
     public function getGroupId(): int {
         return $this->group_id;
     }
+
+
+
 }
