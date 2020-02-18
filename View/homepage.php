@@ -8,39 +8,39 @@
     <title>Product Calculator</title>
 </head>
 <body>
-    <?php require 'includes/header.php'?>
-    <section>
-        <h4>Hello <?php echo $customer->getName()?>,</h4>
-        <form  method="post">
-            <label for="customers">Choose a customer:</label>
-            <select id="customers" name="customers">
-                <?php
-                foreach($userArray as $user){ ?>
+<?php require 'includes/header.php'?>
+<section>
+    <h4>Hello <?php // echo $customer->getName()?>,</h4>
+    <form  method="post">
+        <label for="customers">Choose a customer:</label>
+        <select id="customers" name="customers">
+            <?php
+            foreach($userArray as $user){ ?>
 
-                    <option value="<?php echo $user->getId();?>"><?php echo $user->getName();?></option>
-
-
-                <?php } ?>
-            </select>
-            <label for="products">Choose a product:</label>
-            <select id="products" name="products">
-                <?php
-                foreach($productArray as $product){ ?>
-
-                    <option value="<?php echo $product->getId();?>"><?php echo $product->getName();?></option>
+                <option value="<?php echo $user->getId();?>"><?php echo $user->getName();?></option>
 
 
-                <?php } ?>
-            </select>
-            <input type="submit" value="Submit">
-        </form>
+            <?php } ?>
+        </select>
+        <label for="products">Choose a product:</label>
+        <select id="products" name="products">
+            <?php
+            foreach($productArray as $product){ ?>
 
-    </section>
+                <option value="<?php echo $product->getId();?>"><?php echo $product->getName();?></option>
+
+
+            <?php } ?>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+
+</section>
 <!-- action="/action_page.php": this brings you to another page if you post -->
 
 
 
-    <p>Choose your name and product, and click the "Submit" button to get your price.</p>
+<p>Choose your name and product, and click the "Submit" button to get your price.</p>
 
 
 
@@ -48,6 +48,6 @@
 
 
 
-    <?php require 'includes/footer.php'?>
+<?php require 'includes/footer.php'?>
 </body>
 </html>
