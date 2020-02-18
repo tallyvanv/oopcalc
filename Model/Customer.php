@@ -42,7 +42,7 @@ class Customer
         return $variableArrayName[0];
     }
 
-    public function variableDiscountAmount($percentageAmount, $totalPrice)
+    public function variableDiscountFixedAmount($percentageAmount, $totalPrice)
     {
         return $totalPrice * ($percentageAmount / 100);
     }
