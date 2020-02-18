@@ -36,6 +36,10 @@ class Product
 // this function is used to check if the total fixed discount surpasses the price
 // if so it should set the product price to €0,00 or 0
 //
+    public function totalDiscount($arrayName) : int
+    {
+        return array_sum($arrayName);
+    }
     public function discountChecker($productTotalFixedDiscount, $productPrice) : int
     {
         if ($productTotalFixedDiscount>$productPrice){
