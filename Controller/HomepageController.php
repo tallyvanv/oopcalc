@@ -23,7 +23,7 @@ class HomepageController
             array_push($userArray, new Customer($user['name'], $user['id'], $user['group_id']));
         }
 
-        var_dump($userArray);
+       // var_dump($userArray);
 
         $product = new ProductCreator();
         $products = $product->fetchProductData();
@@ -45,8 +45,8 @@ class HomepageController
             }
         }
 
-        var_dump($groupArray);
-        var_dump($productArray);
+       // var_dump($groupArray);
+       // var_dump($productArray);
 
 
         //you should not echo anything inside your controller - only assign vars here
@@ -54,6 +54,28 @@ class HomepageController
 
         //load the view
         require 'View/homepage.php';
+
+        function whatIsHappening()
+        {
+            echo '<h2>$_GET</h2>';
+            var_dump($_GET);
+            echo '<h2>$_POST</h2>';
+            var_dump($_POST);
+            echo '<h2>$_COOKIE</h2>';
+            var_dump($_COOKIE);
+            echo '<h2>$_SESSION</h2>';
+            var_dump($_SESSION);
+        }
+        whatIsHappening();
+
+       /* if (!isset($_POST['customer'])){
+            return;
+        }
+        else {
+            $_POST['customer'] =
+        }*/
+
+
     }
 }
 //$userDropdown = new UserEncode();
