@@ -22,9 +22,6 @@
 
                 <?php } ?>
             </select>
-            <input type="submit" value="Submit">
-        </form>
-        <form method="post">
             <label for="products">Choose a product:</label>
             <select id="products" name="products">
                 <?php
