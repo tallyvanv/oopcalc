@@ -60,6 +60,21 @@ class Product
     {
         $productPrice = $productPrice - $productTotalFixedDiscount;
         return $productPrice;
-}
+    }
+
+    public function highestVariableDiscount($variableArrayName)
+    {
+        return max($variableArrayName);
+    }
+
+    public function variableDiscountFixedAmount($percentageAmount, $totalPrice)
+    {
+        return $totalPrice * ($percentageAmount / 100);
+    }
+
+    public function variableDiscountCalculator($percentageAmount, $totalPrice)
+    {
+        return $totalPrice - $percentageAmount;
+    }
 
 }
