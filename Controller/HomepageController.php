@@ -44,7 +44,31 @@ class HomepageController
             }
         }
 
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (!isset($_POST["customers"]) || !isset($_POST["products"])) {
+                $_POST["customers"] = $_POST["customers"][0];
+                $_POST["products"] = $_POST["products"][0];
+            }
+            else {
+                $customerPost = $_POST["customers"];
+                $productPost = $_POST["products"];
 
+                var_dump($userArray["$customerPost"]->getGroupId());
+
+                $group = new CustomerGroupCreator();
+                $groups = $group->fetchUserData();
+
+                $groupArray = [];
+
+                foreach ($groups as $idCheck) {
+                    if ($idCheck['group_id'] == $userArray["$customerPost"]->getGroupId()) {
+                        array_push($groupArray, $idCheck);
+                    }
+                }
+                var_dump($groupArray);
+            }
+
+        }
 
         //you should not echo anything inside your controller - only assign vars here
         // then the view will actually display them.
