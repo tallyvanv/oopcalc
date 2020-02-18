@@ -32,4 +32,23 @@ class Customer
         return array_column($arrayName, $discount);
     }
 
+    public function variableDiscountSorter($variableArrayName)
+    {
+        return arsort($variableArrayName);
+    }
+
+    public function variableDiscountAmount($variableArrayName)
+    {
+        return $variableArrayName[0];
+    }
+
+    public function variableDiscountAmount($percentageAmount, $totalPrice)
+    {
+        return $totalPrice * ($percentageAmount / 100);
+    }
+
+    public function variableDiscountCalculator($percentageAmount, $totalPrice)
+    {
+        return $totalPrice - $percentageAmount;
+    }
 }
