@@ -35,10 +35,6 @@ class CustomerGroup
 
     public function getDiscount($data)
     {
-        if (isset($data['fixed_discount'])) {
-            
-        }
-
         return $this->discount;
     }
 
