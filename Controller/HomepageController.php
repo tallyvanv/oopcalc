@@ -17,7 +17,7 @@ class HomepageController
         $userArray = [];
         $productArray = [];
         $groupArray = [];
-        $groupListArray = [];
+        $allCustomerGroups = [];
 
         $loader = new Dataloader();
 
@@ -32,8 +32,10 @@ class HomepageController
             array_push($productArray, new Product($item['name'], $item['id'], $item['price'], $item['description']));
         }
         foreach ($groupData as $group) {
-            array_push($groupListArray, new CustomerGroup($group['id'], $group['name'], $group['discount'], $group['group_id']));
+            array_push($allCustomerGroups, new CustomerGroup($group['id'], $group['name'], $group['discount'], $group['group_id']));
         }
+        var_dump($allCustomerGroups);
+        // var_dump();
         // this will stay in the render
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!isset($_POST["customers"]) || !isset($_POST["products"])) {
@@ -50,9 +52,9 @@ class HomepageController
 
                 // groupId in this case refers to the group ID, which we know from user input (group id is linked).
                 // groupsArray refers to the associative array which we converted from groups.json (we named it $groupData some previous lines)
-                function findGroup ($groupId, $groupsArray)
+                function findGroup ($groupId, $groupsObject)
                 {
-                    foreach ($groupsArray as $group) {
+                    foreach ($groupsObject as $group) {
                         if ($group->getId() == $groupId) {
                             return $group;
                         }
@@ -63,14 +65,14 @@ class HomepageController
                 // we find other groups, which are linked together.
                 while ($groupID !== null)
                 {
-                    $groupsChain = findGroup($groupID, $groupData);
+                    $groupsChain = findGroup($groupID,$allCustomerGroups);
 
                     array_push($groupArray,$groupsChain);
-                    if (isset($groupsChain['group_id']))
+                    if (isset($groupsChain))
                     {
                         // If the current group over which we are looping has a group ID
                         // we override the groupID variable with the new groupID of the former group.
-                        $groupID = $groupsChain['group_id'];
+                        $groupID = $groupsChain->getGroupId();
                     }
                     else
                     {
