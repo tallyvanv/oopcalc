@@ -15,11 +15,9 @@ class HomepageController
     public function render(/*array $GET, array $POST*/)
     {
         $userArray = [];
-
         $productArray = [];
         $groupArray = [];
         $groupListArray = [];
-
 
         $loader = new Dataloader();
 
@@ -30,11 +28,6 @@ class HomepageController
         foreach ($customerData as $user) {
             array_push($userArray, new Customer($user['name'], $user['id'], $user['group_id']));
         }
-
-
-        $productArray = [];
-
-
         foreach ($productData as $item) {
             array_push($productArray, new Product($item['name'], $item['id'], $item['price'], $item['description']));
         }
