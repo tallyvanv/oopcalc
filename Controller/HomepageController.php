@@ -34,6 +34,8 @@ class HomepageController
         foreach ($groupData as $group) {
             array_push($allCustomerGroups, new CustomerGroup($group['id'], $group['name'], $group['discount'], $group['group_id']));
         }
+        var_dump($allCustomerGroups);
+        // var_dump();
         // this will stay in the render
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!isset($_POST["customers"]) || !isset($_POST["products"])) {

@@ -35,6 +35,7 @@ class CustomerGroup
 
     public function getDiscount()
     {
+
         return $this->discount;
     }
 
