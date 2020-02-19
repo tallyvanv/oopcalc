@@ -38,7 +38,6 @@ class CustomerGroup
 
     public function getVariable()
     {
-
         return $this->variable;
     }
     public function getFixed()
