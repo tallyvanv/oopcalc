@@ -11,14 +11,11 @@ require 'Model/Dataloader.php';
 
 class HomepageController
 {
-    //render function with both $_GET and $_POST vars available if it would be needed.
-    public function render(/*array $GET, array $POST*/)
+    public function loadData()
     {
         $userArray = [];
         $productArray = [];
-        $groupArray = [];
         $allCustomerGroups = [];
-
         $loader = new Dataloader();
 
         $customerData = $loader->fetchUserData('data/customers.json');
@@ -34,7 +31,25 @@ class HomepageController
         foreach ($groupData as $group) {
             array_push($allCustomerGroups, new CustomerGroup($group['id'], $group['name'], $group['fixed_discount'], $group['variable_discount'], $group['group_id']));
         }
-        var_dump($allCustomerGroups);
+        $_SESSION['userArray'] = $userArray;
+        $_SESSION['productArray'] = $productArray;
+        $_SESSION['allCustomerGroups'] = $allCustomerGroups;
+    }
+    //render function with both $_GET and $_POST vars available if it would be needed.
+    public function render(/*array $GET, array $POST*/)
+    {
+        if (!isset($_SESSION['userArray'])){
+        $this->loadData();
+        }
+
+        $groupArray = [];
+
+
+        $userArray = $_SESSION['userArray'];
+        $productArray = $_SESSION['productArray'];
+        $allCustomerGroups = $_SESSION['allCustomerGroups'];
+
+        //var_dump($_SESSION['allCustomerGroups']);
         // var_dump();
         // this will stay in the render
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -83,11 +98,17 @@ class HomepageController
                 var_dump($groupArray);
 
                 //var_dump($groupArray);
+                $arrayFixedDiscount = [];
+                $arrayVariableDiscount = [];
+                foreach ($groupArray as $fixedDiscount){
+                    array_push($arrayFixedDiscount, $fixedDiscount->getFixed());
+                }
+                foreach ($groupArray as $variableDiscount){
+                    array_push($arrayVariableDiscount, $variableDiscount->getVariable());
+                }
+                var_dump($arrayFixedDiscount);
 
-                $arrayFixedDiscount = $userArray["$customerPost"]->discountSorter($groupArray, 'fixed_discount');
-                //var_dump($arrayFixedDiscount);
-                $arrayVariableDiscount = $userArray["$customerPost"]->discountSorter($groupArray, 'variable_discount');
-                //var_dump($arrayVariableDiscount);
+                var_dump($arrayVariableDiscount);
 
                 var_dump($productArray["$productPost"]->getPrice());
                 $totalDiscount = $productArray["$productPost"]->totalDiscount($arrayFixedDiscount);
@@ -109,54 +130,14 @@ class HomepageController
                 $newPrice = $productArray["$productPost"]->variableDiscountCalculator($totalVariableDiscount, $totalPrice);
                 var_dump($newPrice);
 
-
-
-
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //you should not echo anything inside your controller - only assign vars here
         // then the view will actually display them.
 
         //load the view
-        require 'View/homepage.php';
+
 
         function whatIsHappening()
         {
@@ -169,7 +150,7 @@ class HomepageController
             echo '<h2>$_SESSION</h2>';
             var_dump($_SESSION);
         }
-        whatIsHappening();
+       // whatIsHappening();
 
         /* if (!isset($_POST['customer'])){
              return;
@@ -177,6 +158,6 @@ class HomepageController
          else {
              $_POST['customer'] =
          }*/
-
+        require 'View/homepage.php';
     }
 }
