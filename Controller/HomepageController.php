@@ -15,10 +15,9 @@ class HomepageController
     public function render(/*array $GET, array $POST*/)
     {
         $userArray = [];
-
         $productArray = [];
         $groupArray = [];
-
+        $groupListArray = [];
 
         $loader = new Dataloader();
 
@@ -29,15 +28,13 @@ class HomepageController
         foreach ($customerData as $user) {
             array_push($userArray, new Customer($user['name'], $user['id'], $user['group_id']));
         }
-
-
-        $productArray = [];
-
-
         foreach ($productData as $item) {
             array_push($productArray, new Product($item['name'], $item['id'], $item['price'], $item['description']));
         }
-
+        foreach ($groupData as $group) {
+            array_push($groupListArray, new CustomerGroup($group['id'], $group['name'], $group['discount'], $group['group_id']));
+        }
+        // this will stay in the render
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!isset($_POST["customers"]) || !isset($_POST["products"])) {
                 $_POST["customers"] = $_POST["customers"][0];
@@ -56,7 +53,7 @@ class HomepageController
                 function findGroup ($groupId, $groupsArray)
                 {
                     foreach ($groupsArray as $group) {
-                        if ($group['id'] == $groupId) {
+                        if ($group->getId() == $groupId) {
                             return $group;
                         }
                     }
