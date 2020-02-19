@@ -34,9 +34,7 @@ class HomepageController
         foreach ($groupData as $group) {
             array_push($allCustomerGroups, new CustomerGroup($group['id'], $group['name'], $group['fixed_discount'], $group['variable_discount'], $group['group_id']));
         }
-        var_dump($allCustomerGroups);
-        // var_dump();
-        // this will stay in the render
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!isset($_POST["customers"]) || !isset($_POST["products"])) {
                 $_POST["customers"] = $_POST["customers"][0];
@@ -108,50 +106,8 @@ class HomepageController
 
                 $newPrice = $productArray["$productPost"]->variableDiscountCalculator($totalVariableDiscount, $totalPrice);
                 var_dump($newPrice);
-
-
-
-
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //you should not echo anything inside your controller - only assign vars here
         // then the view will actually display them.
 
