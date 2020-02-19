@@ -15,12 +15,32 @@ class CustomerGroup
      * @param $discount
      * @param $group_id
      */
-    public function __construct(/*$id, $name, $discount, $group_id*/)
+    public function __construct($id, $name, $discount, $group_id)
     {
         $this->id = $id;
         $this->name = $name;
         $this->discount = $discount;
         $this->group_id = $group_id;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getGroupId()
+    {
+        return $this->group_id;
+    }
+
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 
 }
