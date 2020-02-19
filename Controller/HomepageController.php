@@ -32,7 +32,7 @@ class HomepageController
             array_push($productArray, new Product($item['name'], $item['id'], $item['price'], $item['description']));
         }
         foreach ($groupData as $group) {
-            array_push($allCustomerGroups, new CustomerGroup($group['id'], $group['name'], $group['discount'], $group['group_id']));
+            array_push($allCustomerGroups, new CustomerGroup($group['id'], $group['name'], $group['fixed_discount'], $group['variable_discount'], $group['group_id']));
         }
         var_dump($allCustomerGroups);
         // var_dump();

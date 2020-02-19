@@ -5,21 +5,24 @@ class CustomerGroup
 {
     private $id;
     private $name;
-    private $discount;
+    private $fixed;
+    private $variable;
     private $group_id;
 
     /**
      * CustomerGroup constructor.
      * @param $id
      * @param $name
-     * @param $discount
+     * @param $fixed
+     * @param $variable
      * @param $group_id
      */
-    public function __construct($id, $name, $discount, $group_id)
+    public function __construct($id, $name, $fixed, $variable, $group_id)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->discount = $discount;
+        $this->fixed = $fixed;
+        $this->variable = $variable;
         $this->group_id = $group_id;
     }
 
@@ -33,10 +36,15 @@ class CustomerGroup
         return $this->group_id;
     }
 
-    public function getDiscount()
+    public function getVariable()
     {
 
-        return $this->discount;
+        return $this->variable;
+    }
+    public function getFixed()
+    {
+
+        return $this->fixed;
     }
 
     public function getName()
