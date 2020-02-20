@@ -15,7 +15,7 @@
         <label for="customers">Choose a customer:</label>
         <select id="customers" name="customers">
             <?php
-            foreach($userArray as $user){ ?>
+            foreach($_SESSION['userArray'] as $user){ ?>
 
                 <option value="<?php echo $user->getId();?>"><?php echo $user->getName();?></option>
 
@@ -25,7 +25,7 @@
         <label for="products">Choose a product:</label>
         <select id="products" name="products">
             <?php
-            foreach($productArray as $product){ ?>
+            foreach($_SESSION['productArray'] as $product){ ?>
 
                 <option value="<?php echo $product->getId();?>"><?php echo $product->getName();?></option>
 
