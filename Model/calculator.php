@@ -54,17 +54,17 @@ class calculator
         foreach ($groupArray as $variableDiscount){
             array_push($arrayVariableDiscount, $variableDiscount->getVariable());
         }
-        var_dump($groupArray);
+        //var_dump($groupArray);
 
-        var_dump($arrayFixedDiscount);
+        //var_dump($arrayFixedDiscount);
 
-        var_dump($arrayVariableDiscount);
+        //var_dump($arrayVariableDiscount);
 
-        var_dump($productArray["$productPost"]->getPrice());
+        //var_dump($productArray["$productPost"]->getPrice());
         $totalDiscount = $this->totalDiscount($arrayFixedDiscount);
-        var_dump($totalDiscount);
+        //var_dump($totalDiscount);
         $totalPrice = $this->discountChecker($totalDiscount, $productArray["$productPost"]->getPrice());
-        var_dump($totalPrice);
+        //var_dump($totalPrice);
 
         $highestVariableDiscount = 0;
         if (is_array($productArray))
@@ -72,13 +72,13 @@ class calculator
             $highestVariableDiscount = $this->highestVariableDiscount($arrayVariableDiscount);
         }
 
-        var_dump($highestVariableDiscount);
+        //var_dump($highestVariableDiscount);
 
         $totalVariableDiscount = $this->variableDiscountFixedAmount($highestVariableDiscount, $totalPrice);
-        var_dump($totalVariableDiscount);
+        //var_dump($totalVariableDiscount);
 
         $newPrice = $this->variableDiscountCalculator($totalVariableDiscount, $totalPrice);
-        var_dump($newPrice);
+        //var_dump($newPrice);
 
     }
     public function totalDiscount($arrayName) : float
