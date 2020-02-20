@@ -14,7 +14,7 @@
     <section>
         <h4>Everything has a price</h4>
         <form method="post">
-            <div class="form-row">
+            <div class="form-row d-flex justify-content-center">
                 <div class="form-group p-5">
                     <label for="customers"><strong>Choose a customer:</strong></label>
                     <select id="customers" name="customers" class="form-control custom-select">
@@ -40,7 +40,7 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group d-flex justify-content-center">
                 <input type="submit" value="Get that discount">
             </div>
         </form>
