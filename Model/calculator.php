@@ -68,6 +68,7 @@ class calculator
         // var_dump($totalDiscount);
         $_SESSION['$totalDiscount'] = $totalDiscount;
         echo ($_SESSION['totalDiscount']);
+
         $totalPrice = $this->discountChecker($totalDiscount, $productArray["$productPost"]->getPrice());
         //var_dump($totalPrice);
 
