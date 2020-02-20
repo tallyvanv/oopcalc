@@ -10,7 +10,7 @@
 <body>
 <?php require 'includes/header.php'?>
 <section>
-    <h4>Hello <?php // echo $customer->getName()?>,</h4>
+    <h4>Everything has a price</h4>
     <form  method="post">
         <label for="customers">Choose a customer:</label>
         <select id="customers" name="customers">
