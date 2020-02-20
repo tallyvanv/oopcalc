@@ -40,7 +40,8 @@
 <!-- action="/action_page.php": this brings you to another page if you post -->
 
 <section>
-<p>Hello <?php echo /*$_SESSION['userArray']*/[$_POST["customers"]]/*->getName()*/?></p>
+<p>Hello <?php echo $_SESSION['userArray'][$_POST["customers"]]->getName()?><br>
+You selected <?php echo $_SESSION['productArray'][$_POST["products"]]->getName()?></p>
 </section>
 
 <?php require 'includes/footer.php'?>
