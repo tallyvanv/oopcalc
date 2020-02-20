@@ -33,8 +33,10 @@ class Dataloader
 
     private function customerObjectsCreator()
     {
-         foreach ($this->customerLoader() as $user) {
-            array_push($this->customerObjects, new Customer($user['name'], $user['id'], $user['group_id']));
+        if (empty($this->customerObjects)) {
+            foreach ($this->customerLoader() as $user) {
+                array_push($this->customerObjects, new Customer($user['name'], $user['id'], $user['group_id']));
+            }
         }
         return $this->customerObjects;
 
@@ -52,8 +54,10 @@ class Dataloader
 
     private function groupObjectsCreator()
     {
+        if (empty($this->groupObjects)){
         foreach ($this->groupLoader() as $group) {
             array_push($this->groupObjects, new CustomerGroup($group['id'], $group['name'], $group['fixed_discount'], $group['variable_discount'], $group['group_id']));
+        }
         }
         return $this->groupObjects;
     }
