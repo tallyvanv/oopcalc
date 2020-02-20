@@ -55,7 +55,7 @@ class calculator
             array_push($arrayVariableDiscount, $variableDiscount->getVariable());
         }
         //var_dump($groupArray);
-
+        
         //var_dump($arrayFixedDiscount);
 
         //var_dump($arrayVariableDiscount);
