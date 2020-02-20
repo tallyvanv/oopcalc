@@ -55,10 +55,9 @@ class calculator
             array_push($arrayVariableDiscount, $variableDiscount->getVariable());
         }
 
-       //var_dump($groupArray);
-        $_SESSION['groupArray'] = $groupArray;
-        echo ($_SESSION['groupArray']);
+       var_dump($groupArray);
 
+            $_SESSION['groupArray'] = $groupArray;
         // var_dump($arrayFixedDiscount);
 
         // var_dump($arrayVariableDiscount);

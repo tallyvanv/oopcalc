@@ -56,7 +56,7 @@
             But because you belong to <strong><?php echo "groups" ?></strong> in <strong><?php echo "company" ?></strong><br>
             you fixed discount is <strong><?php echo "fixeddiscount" ?></strong><br>
             and your variable discount is <strong><?php echo "variablediscount" ?></strong><br>
-            So you only ended up paying <strong><?php echo "finalprice" ?></strong>!
+            So you only ended up paying <strong> € <?php echo number_format($_SESSION['newPrice'], 2) ?></strong>!
         </p>
     </section>
 
