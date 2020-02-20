@@ -9,44 +9,54 @@
     <title>Product Calculator</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid p-4">
     <?php require 'includes/header.php' ?>
     <section>
         <h4>Everything has a price</h4>
         <form method="post">
             <div class="form-row">
-                <label for="customers">Choose a customer:</label>
-                <select id="customers" name="customers">
-                    <?php
-                    foreach ($_SESSION['userArray'] as $user) { ?>
+                <div class="form-group p-5">
+                    <label for="customers"><strong>Choose a customer:</strong></label>
+                    <select id="customers" name="customers" class="form-control custom-select">
+                        <?php
+                        foreach ($_SESSION['userArray'] as $user) { ?>
 
-                        <option value="<?php echo $user->getId(); ?>"><?php echo $user->getName(); ?></option>
+                            <option value="<?php echo $user->getId(); ?>"><?php echo $user->getName(); ?></option>
 
 
-                    <?php } ?>
-                </select>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="form-group p-5">
+                    <label for="products"><strong>Choose a product:</strong></label>
+                    <select id="products" name="products" class="form-control custom-select">
+                        <?php
+                        foreach ($_SESSION['productArray'] as $product) { ?>
+
+                            <option value="<?php echo $product->getId(); ?>"><?php echo $product->getName(); ?></option>
+
+
+                        <?php } ?>
+                    </select>
+                </div>
             </div>
-            <div class="form-row">
-                <label for="products">Choose a product:</label>
-                <select id="products" name="products">
-                    <?php
-                    foreach ($_SESSION['productArray'] as $product) { ?>
-
-                        <option value="<?php echo $product->getId(); ?>"><?php echo $product->getName(); ?></option>
-
-
-                    <?php } ?>
-                </select>
+            <div class="form-group">
+                <input type="submit" value="Get that discount">
             </div>
-            <input type="submit" value="Get that discount">
         </form>
 
     </section>
     <!-- action="/action_page.php": this brings you to another page if you post -->
 
     <section>
-        <p>Hello <?php echo $_SESSION['userArray'][$_POST["customers"]]->getName() ?><br>
-            You selected <?php echo $_SESSION['productArray'][$_POST["products"]]->getName() ?></p>
+        <p>Hello <b><?php echo $_SESSION['userArray'][$_POST["customers"]]->getName() ?></b><br>
+            You selected <b><?php echo $_SESSION['productArray'][$_POST["products"]]->getName() ?></b><br>
+        The original price was <b><?php echo "price" ?></b><br>
+        But because you belong to <b><?php echo "groups" ?> in <?php echo "company" ?></b><br>
+            you fixed discount is <b><?php echo "fixeddiscount" ?></b><br>
+            and your variable discount is <b><?php echo "variablediscount" ?></b><br>
+            So you only ended up paying <b><?php echo "finalprice" ?></b>!
+        </p>
     </section>
 
     <?php require 'includes/footer.php' ?>
