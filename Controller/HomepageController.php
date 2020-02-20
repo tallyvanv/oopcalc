@@ -67,17 +67,14 @@ class HomepageController
         foreach ($groupArray as $variableDiscount){
             array_push($arrayVariableDiscount, $variableDiscount->getVariable());
         }
-        var_dump($groupArray);
 
-        var_dump($arrayFixedDiscount);
+        //var_dump($arrayVariableDiscount);
 
-        var_dump($arrayVariableDiscount);
-
-        var_dump($productArray["$productPost"]->getPrice());
+        //var_dump($productArray["$productPost"]->getPrice());
         $totalDiscount = $productArray["$productPost"]->totalDiscount($arrayFixedDiscount);
-        var_dump($totalDiscount);
+        //var_dump($totalDiscount);
         $totalPrice = $productArray["$productPost"]->discountChecker($totalDiscount, $productArray["$productPost"]->getPrice());
-        var_dump($totalPrice);
+        //var_dump($totalPrice);
 
         $highestVariableDiscount = 0;
         if (is_array($productArray))
@@ -85,38 +82,33 @@ class HomepageController
             $highestVariableDiscount = $productArray["$productPost"]->highestVariableDiscount($arrayVariableDiscount);
         }
 
-        var_dump($highestVariableDiscount);
+        //var_dump($highestVariableDiscount);
 
         $totalVariableDiscount = $productArray["$productPost"]->variableDiscountFixedAmount($highestVariableDiscount, $totalPrice);
-        var_dump($totalVariableDiscount);
+        //var_dump($totalVariableDiscount);
 
         $newPrice = $productArray["$productPost"]->variableDiscountCalculator($totalVariableDiscount, $totalPrice);
-        var_dump($newPrice);
+        //var_dump($newPrice);
 
     }
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render()
     {
         if (!isset($_SESSION['userArray'])){
-
-        $this->createObjects();
-
             $this->createObjects();
-
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $customerPost = $_POST["customers"];
             $productPost = $_POST["products"];
-
-
             $this->calculateAll($productPost, $customerPost);
         }
+
         /*  you should not echo anything inside your controller - only assign vars here
           then the view will actually display them.
 
           load the view*/
-        /*  function whatIsHappening()
+        /*function whatIsHappening()
           {
               echo '<h2>$_GET</h2>';
               var_dump($_GET);
@@ -128,6 +120,7 @@ class HomepageController
               var_dump($_SESSION);
           }
         whatIsHappening();*/
+
         require 'View/homepage.php';
     }
 }
