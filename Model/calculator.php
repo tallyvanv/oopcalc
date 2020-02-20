@@ -58,6 +58,15 @@ class calculator
        var_dump($groupArray);
 
             $_SESSION['groupArray'] = $groupArray;
+
+        $groupNames = [];
+        foreach ($groupArray as $group) {
+            array_push($groupNames, $group->getName());
+        }
+
+        $_SESSION["groupNames"] = $groupNames;
+
+
         // var_dump($arrayFixedDiscount);
 
         // var_dump($arrayVariableDiscount);
