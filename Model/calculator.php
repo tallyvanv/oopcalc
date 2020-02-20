@@ -3,6 +3,15 @@
 
 class calculator
 {
+    private function findGroup ($groupId, $groupsObject)
+    {
+        foreach ($groupsObject as $group) {
+            if ($group->getId() == $groupId) {
+                return $group;
+            }
+        }
+    }
+
     public function calculateAll($productPost, $customerPost)
     {
 
@@ -19,20 +28,13 @@ class calculator
 
         // groupId in this case refers to the group ID, which we know from user input (group id is linked).
         // groupsArray refers to the associative array which we converted from groups.json (we named it $groupData some previous lines)
-        function findGroup ($groupId, $groupsObject)
-        {
-            foreach ($groupsObject as $group) {
-                if ($group->getId() == $groupId) {
-                    return $group;
-                }
-            }
-        }
+
 
         // Using the findGroup function which returns a single group, which the user belongs to
         // we find other groups, which are linked together.
         while ($groupID !== null)
         {
-            $groupsChain = findGroup($groupID,$allCustomerGroups);
+            $groupsChain = $this->findGroup($groupID,$allCustomerGroups);
 
             array_push($groupArray,$groupsChain);
             if (isset($groupsChain))
@@ -81,8 +83,8 @@ class calculator
     }
     public function totalDiscount($arrayName) : float
     {
-        $productTotalFixedDiscount = array_sum($arrayName);
-        return $productTotalFixedDiscount;
+        return $productTotalFixedDiscount = array_sum($arrayName);
+
     }
     public function discountChecker($productTotalFixedDiscount, $productPrice) : float
     {
