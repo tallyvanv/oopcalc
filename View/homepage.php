@@ -48,6 +48,7 @@
     </section>
     <!-- action="/action_page.php": this brings you to another page if you post -->
 
+
     <section class="p-2">
         <p>Hello <strong><?php echo $_SESSION['userArray'][$_POST["customers"]]->getName() ?></strong><br>
             You selected <strong><?php echo $_SESSION['productArray'][$_POST["products"]]->getName() ?></strong><br>
@@ -55,7 +56,7 @@
             But because you belong to <strong><?php echo "groups" ?></strong> in <strong><?php echo "company" ?></strong><br>
             you fixed discount is <strong><?php echo "fixeddiscount" ?></strong><br>
             and your variable discount is <strong><?php echo "variablediscount" ?></strong><br>
-            So you only ended up paying <strong><?php echo "finalprice" ?></strong>!
+            So you only ended up paying <strong> € <?php echo number_format($_SESSION['newPrice'], 2) ?></strong>!
         </p>
     </section>
 

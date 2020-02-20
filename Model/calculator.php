@@ -54,15 +54,20 @@ class calculator
         foreach ($groupArray as $variableDiscount){
             array_push($arrayVariableDiscount, $variableDiscount->getVariable());
         }
-        //var_dump($groupArray);
 
-        //var_dump($arrayFixedDiscount);
+       var_dump($groupArray);
 
-        //var_dump($arrayVariableDiscount);
+            $_SESSION['groupArray'] = $groupArray;
+        // var_dump($arrayFixedDiscount);
 
-        //var_dump($productArray["$productPost"]->getPrice());
+        // var_dump($arrayVariableDiscount);
+
+        // var_dump($productArray["$productPost"]->getPrice());
         $totalDiscount = $this->totalDiscount($arrayFixedDiscount);
-        //var_dump($totalDiscount);
+        // var_dump($totalDiscount);
+        $_SESSION['$totalDiscount'] = $totalDiscount;
+        echo ($_SESSION['totalDiscount']);
+
         $totalPrice = $this->discountChecker($totalDiscount, $productArray["$productPost"]->getPrice());
         //var_dump($totalPrice);
 
@@ -72,14 +77,17 @@ class calculator
             $highestVariableDiscount = $this->highestVariableDiscount($arrayVariableDiscount);
         }
 
-        //var_dump($highestVariableDiscount);
+      //  var_dump($highestVariableDiscount);
 
         $totalVariableDiscount = $this->variableDiscountFixedAmount($highestVariableDiscount, $totalPrice);
         //var_dump($totalVariableDiscount);
-
+        $_SESSION['totalVariableDiscount'] =$totalVariableDiscount;
+        echo ($_SESSION['totalVariableDiscount']);
         $newPrice = $this->variableDiscountCalculator($totalVariableDiscount, $totalPrice);
-        //var_dump($newPrice);
-
+        // var_dump($newPrice);
+        $_SESSION['newPrice'] = $newPrice;
+        echo ('</br>');
+        echo ($_SESSION['newPrice']);
     }
     public function totalDiscount($arrayName) : float
     {
