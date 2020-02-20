@@ -9,42 +9,48 @@
     <title>Product Calculator</title>
 </head>
 <body>
-<?php require 'includes/header.php'?>
-<section>
-    <h4>Everything has a price</h4>
-    <form  method="post">
-        <label for="customers">Choose a customer:</label>
-        <select id="customers" name="customers">
-            <?php
-            foreach($_SESSION['userArray'] as $user){ ?>
+<div class="container-fluid">
+    <?php require 'includes/header.php' ?>
+    <section>
+        <h4>Everything has a price</h4>
+        <form method="post">
+            <div class="form-row">
+                <label for="customers">Choose a customer:</label>
+                <select id="customers" name="customers">
+                    <?php
+                    foreach ($_SESSION['userArray'] as $user) { ?>
 
-                <option value="<?php echo $user->getId();?>"><?php echo $user->getName();?></option>
-
-
-            <?php } ?>
-        </select>
-        <label for="products">Choose a product:</label>
-        <select id="products" name="products">
-            <?php
-            foreach($_SESSION['productArray'] as $product){ ?>
-
-                <option value="<?php echo $product->getId();?>"><?php echo $product->getName();?></option>
+                        <option value="<?php echo $user->getId(); ?>"><?php echo $user->getName(); ?></option>
 
 
-            <?php } ?>
-        </select>
-        <input type="submit" value="Get that discount">
-    </form>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="products">Choose a product:</label>
+                <select id="products" name="products">
+                    <?php
+                    foreach ($_SESSION['productArray'] as $product) { ?>
 
-</section>
-<!-- action="/action_page.php": this brings you to another page if you post -->
+                        <option value="<?php echo $product->getId(); ?>"><?php echo $product->getName(); ?></option>
 
-<section>
-<p>Hello <?php echo $_SESSION['userArray'][$_POST["customers"]]->getName()?><br>
-You selected <?php echo $_SESSION['productArray'][$_POST["products"]]->getName()?></p>
-</section>
 
-<?php require 'includes/footer.php'?>
+                    <?php } ?>
+                </select>
+            </div>
+            <input type="submit" value="Get that discount">
+        </form>
+
+    </section>
+    <!-- action="/action_page.php": this brings you to another page if you post -->
+
+    <section>
+        <p>Hello <?php echo $_SESSION['userArray'][$_POST["customers"]]->getName() ?><br>
+            You selected <?php echo $_SESSION['productArray'][$_POST["products"]]->getName() ?></p>
+    </section>
+
+    <?php require 'includes/footer.php' ?>
+</div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
