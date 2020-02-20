@@ -11,29 +11,12 @@ require 'Model/Dataloader.php';
 
 class HomepageController
 {
-    public function loadData()
+
+    public function createObjects()
     {
-        $userArray = [];
-        $productArray = [];
-        $allCustomerGroups = [];
+
         $loader = new Dataloader();
-
-        $customerData = $loader->fetchUserData('data/customers.json');
-        $groupData = $loader->fetchUserData('data/groups.json');
-        $productData = $loader->fetchUserData('data/products.json');
-
-        foreach ($customerData as $user) {
-            array_push($userArray, new Customer($user['name'], $user['id'], $user['group_id']));
-        }
-        foreach ($productData as $item) {
-            array_push($productArray, new Product($item['name'], $item['id'], $item['price'], $item['description']));
-        }
-        foreach ($groupData as $group) {
-            array_push($allCustomerGroups, new CustomerGroup($group['id'], $group['name'], $group['fixed_discount'], $group['variable_discount'], $group['group_id']));
-        }
-        $_SESSION['userArray'] = $userArray;
-        $_SESSION['productArray'] = $productArray;
-        $_SESSION['allCustomerGroups'] = $allCustomerGroups;
+        $loader->objectsToSession();
     }
 
     public function calculateAll($productPost, $customerPost)
@@ -115,7 +98,7 @@ class HomepageController
     public function render()
     {
         if (!isset($_SESSION['userArray'])){
-        $this->loadData();
+        $this->createObjects();
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
