@@ -21,14 +21,11 @@ class HomepageController
         $loader = new Dataloader();
         $loader->objectsToSession();
 
-
     }
 
 
 
-        // groupId in this case refers to the group ID, which we know from user input (group id is linked).
-        // groupsArray refers to the associative array which we converted from groups.json (we named it $groupData some previous lines)
-
+    //render function with both $_GET and $_POST vars available if it would be needed.
     public function render()
     {
         if (!isset($_SESSION['userArray'])){
@@ -36,24 +33,17 @@ class HomepageController
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-                $customerPost = $_POST["customers"];
-                $productPost = $_POST["products"];
-        $this->calculate($_POST["products"], $_POST["customers"]);
-
-
-
             $customerPost = $_POST["customers"];
             $productPost = $_POST["products"];
-            $this->calculateAll($productPost, $customerPost);
+            $this->calculate($_POST["products"], $_POST["customers"]);
+
 
         }
-
         /*  you should not echo anything inside your controller - only assign vars here
           then the view will actually display them.
 
           load the view*/
-        /*function whatIsHappening()
+        /*  function whatIsHappening()
           {
               echo '<h2>$_GET</h2>';
               var_dump($_GET);
@@ -65,7 +55,6 @@ class HomepageController
               var_dump($_SESSION);
           }
         whatIsHappening();*/
-
         require 'View/homepage.php';
     }
     public function calculate($productIndex, $customerIndex)
